@@ -28,6 +28,19 @@ app.get('/mytest', function (req, res) {
 });
 
 
+app.get('/mytest2', function (req, res) {
+    res.set('Cache-Control', 'no-cache, no-store');
+    res.send(
+        '<html>' +
+        '<head>' +
+            '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>' +
+        '<script>$.getJSON( "/mytest", function( data ) { document.getElementById(\'mydiv\').innerText = data.teaTime });</script>' +
+        '</head>' +
+        '<body><div id="mydiv"></div></body>' +
+        '</html>');
+});
+
+
 function setCustomCacheControl (res, path) {
 
     /*if (serveStatic.mime.lookup(path) === 'text/html') {
