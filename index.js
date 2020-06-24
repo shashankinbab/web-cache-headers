@@ -10,6 +10,7 @@ var app = express();
 
 app.use(serveStatic(path.join(__dirname, 'public'), {
     // maxAge: '1d',
+    cacheControl: false,
     setHeaders: setCustomCacheControl
 }));
 
@@ -28,7 +29,13 @@ function setCustomCacheControl (res, path) {
         // Custom Cache-Control for HTML files
         res.setHeader('Cache-Control', 'public, max-age=31557600')
     }*/
-     console.log(path);
+     console.log(serveStatic.mime.lookup(path));
+
+
+    if (serveStatic.mime.lookup(path) == 'application/json') {
+        res.removeHeader('Cache-Control');
+    }
+
     if (serveStatic.mime.lookup(path) == 'application/javascript') {
         // Custom Cache-Control for HTML files
         console.log(serveStatic.mime.lookup(path));
