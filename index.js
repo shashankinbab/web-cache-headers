@@ -22,6 +22,11 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => res.render('pages/index'));
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
+app.get('/mytest', function (req, res) {
+    res.set('Last-Modified', new Date().toUTCString());
+    res.json({ hello: 'world', teaTime: new Date().toISOString()});
+});
+
 
 function setCustomCacheControl (res, path) {
 
