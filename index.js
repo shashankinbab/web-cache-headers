@@ -7,8 +7,6 @@ var cacheRouter = require('./routes/cache');
 var noCacheRouter = require('./routes/nocache');
 
 var app = express();
-// app.enable('etag');
-// app.set('etag', 'strong');
 
 app.use(serveStatic(path.join(__dirname, 'public'), {
     // maxAge: '1d',
@@ -35,11 +33,11 @@ function setCustomCacheControl (res, path) {
         // Custom Cache-Control for HTML files
         console.log(serveStatic.mime.lookup(path));
         if(path.indexOf("cachecontent") >=0 ) {
-            res.setHeader('Cache-Control', 'public, max-age=31557600000')
+           // res.setHeader('Cache-Control', 'public, max-age=31557600000')
         }
 
         if(path.indexOf("nocache") >=0 ) {
-            res.setHeader('Cache-Control', 'no-store,must-revalidate')
+            // res.setHeader('Cache-Control', 'no-store,must-revalidate')
         }
     }
 }
