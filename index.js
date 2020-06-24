@@ -9,7 +9,7 @@ var noCacheRouter = require('./routes/nocache');
 var app = express();
 
 app.use(serveStatic(path.join(__dirname, 'public'), {
-    // maxAge: '1d',
+    etag: false,
     cacheControl: false,
     setHeaders: setCustomCacheControl
 }));
