@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 5000
 
 var cacheRouter = require('./routes/cache');
 var noCacheRouter = require('./routes/nocache');
+var redirectRouter = require('./routes/redirect');
 
 var app = express();
 
@@ -17,6 +18,7 @@ app.use(serveStatic(path.join(__dirname, 'public'), {
 
 app.use('/cache', cacheRouter);
 app.use('/no-cache', noCacheRouter);
+app.use('/redirect', redirectRouter);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => res.render('pages/index'));
